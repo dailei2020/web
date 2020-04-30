@@ -13,8 +13,19 @@ public class UserController {
     String reg(User user){
         if(user.username!=null&&user.password!=null)
         userRepository.save(user);
+        if(user.username==null&&user.password!=null)
+            return "您输入的用户名为空，请重新输入";
+        if(user.password==null&&user.username!=null)
+            return "您输入的密码为空，请重新输入";
+        if(user.username==null&&user.password==null)
+            return "您输入的用户名和密码为空，请重新输入";
         StringBuffer resultValue=new StringBuffer();
         Iterable<User> users=userRepository.findAll();
+        for(User o:users){
+            if(user.username.equals(o.username))
+                if(user.password.equals(o.password))
+                    return "登录成功";
+        }
         users.forEach(o->{
             resultValue
                     .append("username:").append(o.getUsername())

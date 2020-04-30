@@ -20,18 +20,10 @@ public class User {
     }
 
     public String getUsername() {
-        if(username==null){
-String cuoWu=("您输入的用户名为空，请重新输入！");
-        return cuoWu;}
         return username;
     }
 
     public String getPassword() {
-        if(password==null){
-            String cuoWu2=("您输入的密码为空，请重新输入！");
-            return cuoWu2;
-        }
-
         return password;
     }
 
