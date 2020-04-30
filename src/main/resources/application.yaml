@@ -5,7 +5,7 @@ spring:
     password: ab370126
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
   jackson:
     time-zone: Asia/Shanghai
