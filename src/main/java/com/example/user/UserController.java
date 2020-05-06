@@ -10,7 +10,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping("/reg")
+    @RequestMapping("/login")
     String reg(User user) {
         if (user.username != null && user.password != null)
             userRepository.save(user);
