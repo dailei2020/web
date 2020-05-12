@@ -31,11 +31,10 @@ public class UserController {
         System.out.println("注册成功请登录");
         Iterable<User> users = userRepository.findAll();
         for (User o : users) {
-
             if (user.username.equals(o.username))
                 if (user.password.equals(o.password))
                     return "登录成功";
         }
-        return null;
+        return "登陆失败";
     }
 }
