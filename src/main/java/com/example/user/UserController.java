@@ -3,6 +3,7 @@ package com.example.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/user")
@@ -16,10 +17,10 @@ public class UserController {
     }
 
     @RequestMapping("/zhuce")
-    String zhuce(User user) {
-        if (user.username != null && user.password != null) {
+    Object zhuce(User user) {
+        if (user.username !=null&&user.password !=null&& !"".equals(user.username)&& !"".equals(user.password)) {
             userRepository.save(user);
-            return "注册成功";
+            return new ModelAndView("/login.html");
         } else {
             return "请输入正确的用户名密码";
         }
@@ -27,6 +28,7 @@ public class UserController {
 
     @RequestMapping("/login")
     String login(User user) {
+        System.out.println("注册成功请登录");
         Iterable<User> users = userRepository.findAll();
         for (User o : users) {
 
