@@ -20,8 +20,10 @@ public class UserController {
     ModelAndView zhuce(User user) {
         if (user.username !=null&&user.password !=null&& !"".equals(user.username)&& !"".equals(user.password)) {
             userRepository.save(user);
+            System.out.println("跳转到登录界面");
             return new ModelAndView("/login.html");
         } else {
+            System.out.println("登录到失败页面");
             return new ModelAndView("/fail.html");
         }
     }
