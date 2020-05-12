@@ -17,12 +17,12 @@ public class UserController {
     }
 
     @RequestMapping("/zhuce")
-    Object zhuce(User user) {
+    ModelAndView zhuce(User user) {
         if (user.username !=null&&user.password !=null&& !"".equals(user.username)&& !"".equals(user.password)) {
             userRepository.save(user);
             return new ModelAndView("/login.html");
         } else {
-            return "请输入正确的用户名密码";
+            return new ModelAndView("/fail.html");
         }
     }
 
