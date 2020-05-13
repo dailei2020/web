@@ -8,9 +8,9 @@
 <div id="app">
     <form>
         <h1>注册</h1>
-        用户名:<input name="username">
+        用户名:<input name="username" v-model="username">
         <br>
-        密码:<input name="password">
+        密码:<input name="password" v-model="password">
         <br>
         <input type="button" value="注册" @click="reg()">
         <br>
@@ -18,6 +18,8 @@
         <br>
         <input type="button" value="查询" @click="query()">
     </form>
+    {{message}}
+    <br>
     {{list}}
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -30,17 +32,18 @@ let app=new Vue({
     username:"",
     password:"",
     list:{},
+    message:"",
   },
   methods:{
     reg(){
       jQuery.get('/user/reg?username='+this.username+'&password='+this.password).then(res=>{
         this.message='注册'+res;
-      })
+      });
     },
     login(){
       jQuery.get('/user/login?username='+this.username+'&password='+this.password).then(res=>{
         this.message='登陆'+res;
-      })
+      });
     },
     query() {
       jQuery.get('/user/findAll').then(res => {
