@@ -26,6 +26,9 @@ public class UserController {
         if (user.getUsername() == null || user.getPassword() == null) {
             return "失败";
         }
+        if (user.getUsername().equals("") || user.getPassword().equals("")) {
+            return "失败";
+        }
         userRepository.save(user);
         return "成功";
     }
