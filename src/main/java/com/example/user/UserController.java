@@ -12,8 +12,6 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    UserService userService;
-    @Autowired
     ObjectMapper objectMapper;
 
     /**
@@ -35,17 +33,4 @@ public class UserController {
 
     }
 
-    @RequestMapping("/exception")
-    String exception(User user){
-        try{
-            userService.save(user);
-            // 执行一段代码
-        }catch (UsernameTooLongException e/* 用户名太长异常 */){
-            // 错误处理的代码
-            return "用户名太长,请重新输入";
-        }catch (PasswordTooLongException e){
-            return "密码太长,请重新输入";
-        }
-        return "注册成功";
-    }
 }
