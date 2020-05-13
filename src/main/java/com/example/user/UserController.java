@@ -60,5 +60,14 @@ public class UserController {
         return objectMapper.writeValueAsString(userRepository.findAll());
     }
 
-
+    /**
+     * 测试函数
+     *
+     * @return 'test'
+     * @author CuiYuming
+     */
+    @RequestMapping("/test")
+    String test() {
+        return "test";
+    }
 }
