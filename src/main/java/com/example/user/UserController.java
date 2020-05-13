@@ -29,7 +29,8 @@ public class UserController {
         // 将用户输入的内容保存到数据库,并获取保存后的结果
         user = userRepository.save(user);
         // 将保存后的记录转换成字符串,并输出到浏览器
-        return objectMapper.writeValueAsString(user);
+
+        return objectMapper.writeValueAsString(userRepository.findAll());
 
     }
 
