@@ -29,9 +29,17 @@ public class UserController {
         userRepository.save(user);
         return "成功";
     }
+
+    /**
+     * 登录
+     *
+     * @param user 用户输入信息
+     * @return 登陆状态
+     * @author CuiYuming
+     */
     @RequestMapping("/login")
-    String login(User user){
-        if(userRepository.existsByUsernameAndPassword(user.getUsername(),user.getPassword())){
+    String login(User user) {
+        if (userRepository.existsByUsernameAndPassword(user.getUsername(), user.getPassword())) {
             return "成功";
         }
         return "失败";
