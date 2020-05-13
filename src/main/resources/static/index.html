@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <form>
+
+        用户名:<input v-model="username">
+        <br>
+        密码:<input v-model="password" type="password">
+
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    let app=new Vue({
+        el:'#app',
+        data:{
+            username:"",
+            password:"",
+        }
+    });
+
+
+</script>
+</body>
+</html>

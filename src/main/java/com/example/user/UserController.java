@@ -1,31 +1,30 @@
 package com.example.user;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ObjectMapper objectMapper;
 
     @RequestMapping("/test")
     String aaa() {
         return "123";
     }
 
-    @RequestMapping("/zhuce")
-    ModelAndView zhuce(User user) {
-        if (user.username !=null&&user.password !=null&& !"".equals(user.username)&& !"".equals(user.password)) {
-            userRepository.save(user);
-            System.out.println("跳转到登录界面");
-            return new ModelAndView("/login.html");
-        } else {
-            System.out.println("登录到失败页面");
-            return new ModelAndView("/fail.html");
+    @RequestMapping("/reg")
+    String reg(User user) throws JsonProcessingException {
+        if (user.getUsername() == null || user.getPassword() == null) {
+            return "注册失败:用户名或密码为空";
         }
+        return objectMapper.writeValueAsString(user);
     }
 
     @RequestMapping("/login")
@@ -38,5 +37,13 @@ public class UserController {
                     return "登录成功";
         }
         return "登陆失败";
+    }
+
+    @RequestMapping("/findall")
+    String findAll() throws JsonProcessingException {
+
+        Iterable<User> users = userRepository.findAll();
+        return objectMapper.writeValueAsString(users);
+
     }
 }
