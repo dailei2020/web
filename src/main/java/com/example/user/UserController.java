@@ -14,36 +14,21 @@ public class UserController {
     @Autowired
     ObjectMapper objectMapper;
 
-    @RequestMapping("/test")
-    String aaa() {
-        return "123";
-    }
-
+    /**
+     * @author CuiYuming
+     * @param user 用户输入的信息,包括用户名和密码
+     * @return 返回注册结果
+     * @throws JsonProcessingException 对象转换Json失败异常
+     */
     @RequestMapping("/reg")
     String reg(User user) throws JsonProcessingException {
+        // 检测空值
         if (user.getUsername() == null || user.getPassword() == null) {
             return "注册失败:用户名或密码为空";
         }
+        // 将用户输入的内容保存到数据库,并获取保存后的结果
+        user = userRepository.save(user);
+        // 将保存后的记录转换成字符串,并输出到浏览器
         return objectMapper.writeValueAsString(user);
-    }
-
-    @RequestMapping("/login")
-    String login(User user) {
-        System.out.println("注册成功请登录");
-        Iterable<User> users = userRepository.findAll();
-        for (User o : users) {
-            if (user.username.equals(o.username))
-                if (user.password.equals(o.password))
-                    return "登录成功";
-        }
-        return "登陆失败";
-    }
-
-    @RequestMapping("/findall")
-    String findAll() throws JsonProcessingException {
-
-        Iterable<User> users = userRepository.findAll();
-        return objectMapper.writeValueAsString(users);
-
     }
 }
