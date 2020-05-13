@@ -1,5 +1,6 @@
 package com.example.user;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +15,14 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
     @RequestMapping("/reg")
-    ModelAndView reg(User user) {
+    String reg(User user) {
         if (user.getUsername() != null && user.getPassword() != null) {
             userRepository.save(user);
             System.out.println("跳转到登录界面");
-            return new ModelAndView("/login.html");
+            return "成功";
         } else {
             System.out.println("登录到失败页面");
-            return new ModelAndView("/fail.html");
+            return "失败";
         }
     }
 
@@ -30,7 +31,10 @@ public class UserController {
         System.out.println("注册成功请登录");
         User user1=userRepository.findByUsername(user.getUsername());
         if(user.getPassword().equals(user1.getPassword()))
-            return "登录成功";
-        else return "登录失败";
+            return "成功";
+        else return "失败";
+    }
+    String findAll(User user) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(userRepository.findAll());
     }
 }

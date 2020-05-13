@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>注册</h1>
+    <form>
+        用户:<input name="username" v-model="username">
+        <br>
+        密码:<input name="password" v-model="password">
+        <br>
+        <input type="button" value="注册" @click="reg()">
+        <br>
+        <input type="button" value="登录" @click="login()">
+        <br>
+        <input type="button" value="查询" @click="query()">
+    </form>
+    {{message}}
+    <br>
+    {{list}}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    let app=new Vue({
+        el:'#app',
+        data:{
+            username:"",
+            password:"",
+            message:"",
+                list:{},
+        },
+        methods:{
+            reg() {
+                jQuery.get('/user/reg?username='+this.username+'&password='+this.password).then(res=>{
+                    this.message='注册'+res;
+                })
+            },
+            login() {jQuery.get('/user/reg?username='+this.username+'&password='+this.password).then(res=>{
+                this.message='登录'+res;
+            })
+            },
+            query() {
+                jQuery.get('/user/findAll').then(res=>{
+                    this.list=JSON.parse(res);
+                })
+            },
+        }
+    })
+    </script>
+</body>
+</html>
