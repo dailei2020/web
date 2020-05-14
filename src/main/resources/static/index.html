@@ -39,7 +39,7 @@
                     this.message='注册'+res;
                 })
             },
-            login() {jQuery.get('/user/reg?username='+this.username+'&password='+this.password).then(res=>{
+            login() {jQuery.get('/user/login?username='+this.username+'&password='+this.password).then(res=>{
                 this.message='登录'+res;
             })
             },

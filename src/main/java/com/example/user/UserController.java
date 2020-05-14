@@ -34,6 +34,7 @@ public class UserController {
             return "成功";
         else return "失败";
     }
+    @RequestMapping("/findAll")
     String findAll(User user) throws JsonProcessingException {
         return objectMapper.writeValueAsString(userRepository.findAll());
     }
