@@ -6,28 +6,41 @@
 </head>
 <body>
 <div id="app">
+    <button @click="sub">-</button>
+    <span>{{num}}</span>
+    <button @click="add">+</button>
     <h2 v-text="message+'!'"></h2>
     <h2 v-text="info"></h2>
     <p v-html="content"></p>
     <input type="button" value="保存" @click="save">
+    <input type="button" value="save" @dblclick="save">
 </div>
 <!-- 开发环境版本，包含了有帮助的命令行警告 -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
     var app=new Vue({
         el:"#app",
-        data:{
-            message:"hello vue ",
-            info:"2020.5.14",
+        data: {
+            num:"0",
+            message: "hello vue ",
+            info: "2020.5.14",
             //content:"白也诗无敌"
-            content:"<a href='http://www.baidu.com'>百度一下,你就知道</a>",
-            method:{
+            content: "<a href='http://www.baidu.com'>百度一下,你就知道</a>",
+        },
+            methods:{
                 save:function () {
                     alert("保存成功")
 
-                }
+                },
+                add:function(){
+                    this.num++;
+
+                },
+                sub:function(){
+                    this.num--;
+                },
             }
-        }
+
     })
 </script>
 </body>
