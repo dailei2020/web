@@ -7,7 +7,7 @@
 <body>
 <div id="app">
     <form>
-        <h1>表格需要显示的数据</h1>
+        <h1>添加边框</h1>
         用户名:<input name="username" v-model="username">
         <br>
         密码:<input name="password" v-model="password">
@@ -20,9 +20,16 @@
     </form>
     {{message}}
     <br>
-    <a href="list1.html">转换成表格</a>
+    <a href="list1.html">上一步</a>
     <br>
-    {{list}}
+    <a href="list3.html">添加表头</a>
+    <br>
+    <table  border="8">
+        <tr></tr>
+        <tr v-for="line in list">
+            <td v-for="col in line">{{col}}</td>
+        </tr>
+    </table>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>

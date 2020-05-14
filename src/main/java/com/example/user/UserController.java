@@ -70,4 +70,22 @@ public class UserController {
     String test() {
         return "test";
     }
+
+    /**
+     * 根据id删除记录
+     *
+     * @param id 欲删除实体的id
+     * @return 执行结果
+     * @author CuiYuming
+     */
+    @RequestMapping("/remove")
+    String removeById(Integer id) {
+        try {
+            userRepository.deleteById(id);
+            return "成功";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "失败";
+        }
+    }
 }
