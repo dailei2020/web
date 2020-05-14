@@ -3,6 +3,7 @@ package com.example.user;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -74,7 +75,7 @@ public class UserController {
     /**
      * 根据id删除记录
      *
-     * @param id 欲删除实体的id
+     * @param id 要删除实体的id
      * @return 执行结果
      * @author CuiYuming
      */
@@ -83,8 +84,8 @@ public class UserController {
         try {
             userRepository.deleteById(id);
             return "成功";
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (EmptyResultDataAccessException e) {
+            // 异常:要删除的记录不存在
             return "失败";
         }
     }

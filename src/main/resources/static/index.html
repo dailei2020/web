@@ -20,7 +20,9 @@
     </form>
     {{message}}
     <br>
-    <a href="list1.html">转换成表格</a>
+    <a>0</a>
+    <br>
+    <a href="list1.html">转换成表格,打开页面时自动获取数据</a>
     <br>
     {{list}}
 </div>
@@ -52,10 +54,6 @@ let app=new Vue({
         this.list = JSON.parse(res);
       });
     },
-  },
-  created(){
-    this.query();
-  }
 });
 
 </script>
